@@ -13,4 +13,4 @@ const RouteSwitch = () => {
     );
 };
 
-export default RouteSwitch
+export default RouteSwitch;
