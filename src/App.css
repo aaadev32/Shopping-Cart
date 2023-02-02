@@ -10,6 +10,19 @@ body {
   height: inherit;
 }
 
+li {
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+img {
+  width: 450px;
+  height: 250px;
+}
 
 .App {
   display: flex;
@@ -32,8 +45,6 @@ body {
   text-align: center;
   height: 20%;
   margin: 30px;
-  background-color: #1D2D44;
-  border: 5px solid #1D2D44;
   color: #F0EBD8;
 }
 
@@ -41,9 +52,34 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 80%;
   text-align: center;
   color: #F0EBD8;
+}
+
+#home-event-items {
+  display: flex;
+  justify-content: space-evenly;
+  flex: 0 1 auto;
+}
+
+#home-event-items :hover {
+  display: flex;
+  position: relative;
+  box-shadow: 5px 5px 14px #F0EBD8, -5px -5px 14px #F0EBD8;
+}
+
+#home-bundle-items {
+  display: flex;
+  justify-content: center;
+  margin: 50px;
+  width: 60%;
+}
+
+#home-bundle-items :hover {
+  display: flex;
+  position: relative;
+  flex: 1 1 auto;
+  box-shadow: 5px 5px 14px #F0EBD8, -5px -5px 14px #F0EBD8;
 }
 
 #shopping-list {
