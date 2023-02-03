@@ -7,12 +7,31 @@ const ShoppingCart = () => {
 
     return (
         <div id="shopping-cart">
-            shopping cart
-            <ol>
-                <li>placeholder cart item</li>
-                <li>placeholder cart item</li>
-                <li>placeholder cart item</li>
-            </ol>
+            <div id="cart">
+                shopping cart
+                <ol>
+                    <li>placeholder cart item</li>
+                    <li>placeholder cart item</li>
+                    <li>placeholder cart item</li>
+                </ol>
+            </div>
+            <div>
+                <ol id="shop-items">
+                    <li>place holder shop item</li>
+                    <li>place holder shop item</li>
+                    <li>place holder shop item</li>
+                    <li>place holder shop item</li>
+                    <li>place holder shop item</li>
+                    <li>place holder shop item</li>
+                    <li>place holder shop item</li>
+                    <li>place holder shop item</li>
+                    <li>place holder shop item</li>
+                    <li>place holder shop item</li>
+                    <li>place holder shop item</li>
+                    <li>place holder shop item</li>
+                </ol>
+            </div>
+
         </div>
     );
 };
