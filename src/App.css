@@ -101,6 +101,7 @@ img {
 #shop-page {
   display: flex;
   flex-direction: column;
+  height: inherit;
 }
 
 #shopping-cart {
@@ -108,22 +109,53 @@ img {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  flex: 1 1 auto;
-  background-color: #3E5C76;
+  background-color: #0D1321;
 }
 
 #cart {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  text-align: center;
+  overflow: scroll;
 }
 
-#shop-items {
+#cart-items-list {
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
+  width: 80%;
+  margin: 1% auto;
+  height: 120px;
+  background-color: #F0EBD8;
+
+}
+
+.cart-items{
+  display: flex;
+  justify-content: space-between;
+}
+
+
+#shop {
+  display: flex;
   justify-content: center;
-  text-align: center;
+  background-color: #0D1321;
+  height: 100%;
+  overflow: scroll;
+}
+
+#shop-items-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 80%;
+  margin: 2% auto;
+  background-color: #3E5C76;
+}
+
+.shop-items {
+  display: flex;
+  justify-content: space-between;
 }
 
 #game {

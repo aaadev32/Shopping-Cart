@@ -8,27 +8,26 @@ const ShoppingCart = () => {
     return (
         <div id="shopping-cart">
             <div id="cart">
-                shopping cart
-                <ol>
-                    <li>placeholder cart item</li>
-                    <li>placeholder cart item</li>
-                    <li>placeholder cart item</li>
+                <ol id="cart-items-list">
+                    <li className="cart-items">place holder shop item image <div className="cart-item-price">placeholder price/disount</div></li>
+                    <li className="cart-items">place holder shop item image <div className="cart-item-price">placeholder price/disount</div></li>
+                    <li className="cart-items">place holder shop item image <div className="cart-item-price">placeholder price/disount</div></li>
                 </ol>
             </div>
-            <div>
-                <ol id="shop-items">
-                    <li>place holder shop item</li>
-                    <li>place holder shop item</li>
-                    <li>place holder shop item</li>
-                    <li>place holder shop item</li>
-                    <li>place holder shop item</li>
-                    <li>place holder shop item</li>
-                    <li>place holder shop item</li>
-                    <li>place holder shop item</li>
-                    <li>place holder shop item</li>
-                    <li>place holder shop item</li>
-                    <li>place holder shop item</li>
-                    <li>place holder shop item</li>
+            <div id="shop">
+                <ol id="shop-items-list">
+                    <li className="shop-items">place holder shop item image <div className="shop-item-description"> placeholder description</div> <div className="shop-item-price">placeholder price/disount</div></li>
+                    <li className="shop-items">place holder shop item image <div className="shop-item-description"> placeholder description</div> <div className="shop-item-price">placeholder price/disount</div></li>
+                    <li className="shop-items">place holder shop item image <div className="shop-item-description"> placeholder description</div> <div className="shop-item-price">placeholder price/disount</div></li>
+                    <li className="shop-items">place holder shop item image <div className="shop-item-description"> placeholder description</div> <div className="shop-item-price">placeholder price/disount</div></li>
+                    <li className="shop-items">place holder shop item image <div className="shop-item-description"> placeholder description</div> <div className="shop-item-price">placeholder price/disount</div></li>
+                    <li className="shop-items">place holder shop item image <div className="shop-item-description"> placeholder description</div> <div className="shop-item-price">placeholder price/disount</div></li>
+                    <li className="shop-items">place holder shop item image <div className="shop-item-description"> placeholder description</div> <div className="shop-item-price">placeholder price/disount</div></li>
+                    <li className="shop-items">place holder shop item image <div className="shop-item-description"> placeholder description</div> <div className="shop-item-price">placeholder price/disount</div></li>
+                    <li className="shop-items">place holder shop item image <div className="shop-item-description"> placeholder description</div> <div className="shop-item-price">placeholder price/disount</div></li>
+                    <li className="shop-items">place holder shop item image <div className="shop-item-description"> placeholder description</div> <div className="shop-item-price">placeholder price/disount</div></li>
+                    <li className="shop-items">place holder shop item image <div className="shop-item-description"> placeholder description</div> <div className="shop-item-price">placeholder price/disount</div></li>
+                    <li className="shop-items">place holder shop item image <div className="shop-item-description"> placeholder description</div> <div className="shop-item-price">placeholder price/disount</div></li>
                 </ol>
             </div>
 
