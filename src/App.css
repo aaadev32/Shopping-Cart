@@ -14,20 +14,24 @@ li {
   list-style: none;
 }
 
+ol {
+  padding: 0;
+}
+
 a {
   color: inherit;
   text-decoration: inherit;
-}
-
-img {
-  width: 450px;
-  height: 250px;
 }
 
 .App {
   display: flex;
   flex-direction: column;
   height: inherit;
+}
+
+.home-body-images {
+  width: 450px;
+  height: 250px;
 }
 
 #home-page {
@@ -98,10 +102,16 @@ img {
   box-shadow: 5px 5px 14px #F0EBD8, -5px -5px 14px #F0EBD8;
 }
 
+.shop-images {
+  height: inherit;
+  width: inherit;
+}
+
 #shop-page {
   display: flex;
   flex-direction: column;
   height: inherit;
+  background: linear-gradient(0.25turn, #3E5C76, #0D1321, #3E5C76);
 }
 
 #shopping-cart {
@@ -109,7 +119,6 @@ img {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: #0D1321;
 }
 
 #cart {
@@ -126,20 +135,21 @@ img {
   width: 80%;
   margin: 1% auto;
   height: 120px;
-  background-color: #F0EBD8;
-
+  color: #F0EBD8
 }
 
-.cart-items{
+.cart-items {
   display: flex;
   justify-content: space-between;
 }
 
+#checkout-button {
+  align-self: flex-end;
+  width: 150px;
+  margin: 5px 10px;
+}
 
 #shop {
-  display: flex;
-  justify-content: center;
-  background-color: #0D1321;
   height: 100%;
   overflow: scroll;
 }
@@ -148,14 +158,34 @@ img {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  position: relative;
   width: 80%;
   margin: 2% auto;
-  background-color: #3E5C76;
+  padding: 30px 30px;
+  overflow: scroll;
+
 }
 
 .shop-items {
   display: flex;
   justify-content: space-between;
+  text-align: center;
+  border-radius: 5px;
+  max-height: 100px;
+  color: #F0EBD8;
+}
+
+.shop-items:hover {
+  position: relative;
+  max-height: 140px;
+  font-size: large;
+  box-shadow: 5px 5px 14px #F0EBD8, -5px -5px 14px #F0EBD8;
+  transition-duration: 350ms;
+}
+
+.shop-item-description,
+.shop-item-price {
+  align-self: center;
 }
 
 #game {
