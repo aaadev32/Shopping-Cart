@@ -173,6 +173,7 @@ a {
   border-radius: 5px;
   max-height: 100px;
   color: #F0EBD8;
+  transition-duration: 350ms;
 }
 
 .shop-items:hover {
@@ -186,6 +187,18 @@ a {
 .shop-item-description,
 .shop-item-price {
   align-self: center;
+  margin-right: 10px;
+}
+
+.shop-items>button {
+  background-color: rgba(0, 0, 0, 0);
+  border: 2px solid #748CAB;
+  border-radius: 5px;
+  color: #F0EBD8;
+}
+
+.shop-items>button:active {
+  box-shadow: 5px 5px 14px #0D1321, -5px -5px 14px #0D1321;
 }
 
 #game {
