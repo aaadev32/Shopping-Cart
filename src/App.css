@@ -134,8 +134,9 @@ a {
   justify-content: space-around;
   width: 80%;
   margin: 1% auto;
+  overflow: scroll;
   height: 120px;
-  color: #F0EBD8
+  color: #F0EBD8;
 }
 
 .cart-items {
