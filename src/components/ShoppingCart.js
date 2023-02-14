@@ -24,7 +24,7 @@ const ShoppingCart = () => {
             price: e.target.parentNode.children[2].textContent
         };
 
-        let newCartItems = cartItems;
+        let newCartItems = [...cartItems];
         newCartItems.push(addedItem);
 
         setCartItems(newCartItems);
@@ -33,17 +33,30 @@ const ShoppingCart = () => {
 
     }
 
-    const Cart = () => {
-        console.log('list element created')
-        return (
-            <ol id="cart-items-list">
-                {
-                    cartItems.map((items) =>
-                        <li key={Math.floor(Math.random() * 1000000000)}><img src={cartItems.image}></img> test <h4>{cartItems.price}</h4></li>
-                    )
+    const Price = () => {
 
-                }
-            </ol>
+
+    }
+
+    const Cart = () => {
+        let totalPrice = 0;
+        cartItems.forEach(element => {
+            //add a data-key to shopping items that has an integer value to make calculating the price easier then update this code to add and assign the value here
+            totalPrice += element.price;
+        });
+
+        const itemList = cartItems.map((items) => {
+            return <li key={Math.floor(Math.random() * 1000000000)} className="cart-items"><img src={items.image} className="cart-items-images"></img> <h4>{items.price}</h4></li>
+        }
+        );
+
+        return (
+            <div id="cart">
+                <ol id="cart-items-list">
+                    {itemList[0] == null ? 'Your Cart Is Empty.' : itemList}
+                </ol>
+                <div id="cart-items-price">{totalPrice}</div>
+            </div>
         );
     }
     const deleteItem = (e) => {
@@ -53,9 +66,7 @@ const ShoppingCart = () => {
     return (
         <div id="shopping-cart">
 
-            <div id="cart">
-                <Cart />
-            </div>
+            <Cart />
             <div id="shop">
                 <ol id="shop-items-list">
                     <li className="shop-items">

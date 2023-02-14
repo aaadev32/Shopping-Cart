@@ -24,7 +24,6 @@ const Cart = (image, price) => {
 
     return (
         <div className="cart">
-
             <button id="checkout-button">Checkout</button>
         </div>
     );
