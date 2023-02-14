@@ -1,25 +1,32 @@
 import { render } from "@testing-library/react";
-import React, { useState } from "react";
-
-const addToCart = (e) => {
-
-    //const [cartNode, setCartNode] = useState()
-
-    //TODO get the associated img src and price to be added to the shopping cart
-    console.log(e.target);
-    console.log(e.target.parentNode.children);
-    let itemToCart = e.target.parentNode.children[0].cloneNode(true);
-    let addPrice = e.target.parentNode.children[2].cloneNode(true);
+import React, { useState, useEffect } from "react";
 
 
-} 
-const Cart = () => {
+const Cart = (image, price) => {
+    const [cartItemImage, setCartItemImage] = useState([]);
+    const [cartItemPrice, setCartItemPrice] = useState([]);
 
-    const [cartItemImage, setCartItemImage] = useState();
-    const [cartItemPrice, setCartitemPrice] = useState();
+    console.log(cartItemImage, cartItemPrice)
+    console.log(image, price)
+
+    //works but causes infinite loop
+    setCartItemImage(cartItemImage.concat(1));
+    setCartItemPrice(cartItemPrice.concat(1));
+
+    useEffect(
+        () => {
+            return () => {
+
+            };
+        },
+        [cartItemImage, cartItemPrice],
+    );
 
     return (
-        <div>test</div>
+        <div className="cart">
+
+            <button id="checkout-button">Checkout</button>
+        </div>
     );
 
 

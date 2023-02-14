@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Cart from "./Cart";
-import addToCart from "./Cart";
 import OpusMagnum from "../media/opus-magnum.jpg";
 import QuakeLive from "../media/quake-live.jpg";
 import Titanfall from "../media/titanfall2.jpg";
@@ -16,9 +14,38 @@ import Bannerlord from "../media/bannerlord.jpg";
 
 
 const ShoppingCart = () => {
+    const [cartItems, setCartItems] = useState([]);
+    const addToCart = (e) => {
+        //const [cartNode, setCartNode] = useState()
 
+        console.log(e.target.parentNode.children);
+        let addedItem = {
+            image: e.target.parentNode.children[0].src,
+            price: e.target.parentNode.children[2].textContent
+        };
 
+        let newCartItems = cartItems;
+        newCartItems.push(addedItem);
 
+        setCartItems(newCartItems);
+        console.log(addedItem);
+        console.log(cartItems);
+
+    }
+
+    const Cart = () => {
+        console.log('list element created')
+        return (
+            <ol id="cart-items-list">
+                {
+                    cartItems.map((items) =>
+                        <li key={Math.floor(Math.random() * 1000000000)}><img src={cartItems.image}></img> test <h4>{cartItems.price}</h4></li>
+                    )
+
+                }
+            </ol>
+        );
+    }
     const deleteItem = (e) => {
 
     }
@@ -28,7 +55,6 @@ const ShoppingCart = () => {
 
             <div id="cart">
                 <Cart />
-                <button id="checkout-button">Checkout</button>
             </div>
             <div id="shop">
                 <ol id="shop-items-list">

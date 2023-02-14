@@ -102,10 +102,6 @@ a {
   box-shadow: 5px 5px 14px #F0EBD8, -5px -5px 14px #F0EBD8;
 }
 
-.shop-images {
-  height: inherit;
-  width: inherit;
-}
 
 #shop-page {
   display: flex;
@@ -148,6 +144,11 @@ a {
   align-self: flex-end;
   width: 150px;
   margin: 5px 10px;
+}
+
+.shop-images {
+  height: inherit;
+  width: inherit;
 }
 
 #shop {
