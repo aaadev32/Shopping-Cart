@@ -34,8 +34,14 @@ h4 {
 }
 
 .home-body-images {
-  width: 450px;
-  height: 250px;
+  width: 350px;
+  height: 220px;
+}
+
+.home-body-images:hover {
+  width: 400px;
+  height: 270px;
+  transition-duration: 350ms;
 }
 
 #home-page {
@@ -96,7 +102,8 @@ h4 {
 
 #home-bundle-items {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
+  
 }
 
 #home-bundle-items :hover {

@@ -17,6 +17,7 @@ const HomeBody = () => {
                 <li><a href={'/shop'}><img className="home-body-images" src={QuakeLive} alt="game"></img></a></li>
                 <li><a href={'/shop'}><img className="home-body-images" src={Titanfall} alt="game"></img></a></li>
             </ol>
+            <h2>Featured Bundles</h2>
             <ol id="home-bundle-items">
                 <li><a href={'/shop'}><img className="home-body-images" src={Stalker} alt="game"></img></a></li>
                 <li><a href={'/shop'}><img className="home-body-images" src={Metro} alt="game"></img></a></li>

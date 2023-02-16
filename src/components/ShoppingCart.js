@@ -33,18 +33,33 @@ const ShoppingCart = () => {
 
     }
 
+    const removeItem = (e) => {
+        //ToDo: find the key index of the associated element calling this function and remove it from the ordered list then rerender the list 
+        let listItemIndex = e.target.parentNode.parentNode.id;
+        let updatedCartItems = [...cartItems];
+        updatedCartItems.splice(listItemIndex, 1)
+        setCartItems(updatedCartItems)
+        console.log(cartItems);
+    }
+
     const Cart = () => {
         let totalPrice = 0;
         let taxPrice = 0;
-        let index = 0;
 
         cartItems.forEach(element => {
             //add a data-key to shopping items that has an integer value to make calculating the price easier then update this code to add and assign the value here
             totalPrice += element.price;
             taxPrice = totalPrice * .1 + totalPrice;
         });
-        const itemList = cartItems.map((items) => {
-            return <li key={index++} className="cart-items"><img src={items.image} className="cart-items-images"></img> <h4>{items.price}</h4></li>
+        const itemList = cartItems.map((items, index) => {
+            console.log(`list items ${index}`)
+            return <li key={index} className="cart-items" id={index}>
+                <img src={items.image} className="cart-items-images"></img>
+                <div>
+                    <h4>${items.price}</h4>
+                    <button className="shop-button" onClick={removeItem}>Remove Item</button>
+                </div>
+            </li>
         }
         );
 
@@ -54,16 +69,22 @@ const ShoppingCart = () => {
                     {itemList[0] == null ? 'Your Cart Is Empty.' : itemList}
                 </ol>
                 <div id="pricing-checkout">
-                    <div class="cart-items-price">Total Price: ${totalPrice.toFixed(2)} </div>
-                    <div class="cart-items-price">Estimate With Tax: ${taxPrice.toFixed(2)}</div>
+                    <div className="cart-items-price">Total Price: ${totalPrice.toFixed(2)} </div>
+                    <div className="cart-items-price">Estimate With Tax: ${taxPrice.toFixed(2)}</div>
                     <button className="shop-button">Checkout</button>
                 </div>
             </div>
         );
     }
-    const deleteItem = (e) => {
 
-    }
+    useEffect(
+        () => {
+            return () => {
+                console.log(cartItems)
+            };
+        },
+        [cartItems],
+    );
 
     return (
         <div id="shopping-cart">
