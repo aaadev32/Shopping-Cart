@@ -4,7 +4,6 @@ import Titanfall from "../media/titanfall2.jpg";
 import Stalker from "../media/stalker-bundle.jpeg";
 import Metro from "../media/metro-bundle.avif";
 
-
 const HomeBody = () => {
 
     return (
@@ -22,7 +21,11 @@ const HomeBody = () => {
                 <li><a href={'/shop'}><img className="home-body-images" src={Stalker} alt="game"></img></a></li>
                 <li><a href={'/shop'}><img className="home-body-images" src={Metro} alt="game"></img></a></li>
             </ol>
-
+            <div id="quotes">
+                <h3>i like quake not doom - Joe Roegan</h3>
+                <h3>i love sales - Gabe Newell</h3>
+                <h3>factorio should be an illegal schedule 1 drug - Gamestart Customer</h3>
+            </div>
         </div>
     );
 };

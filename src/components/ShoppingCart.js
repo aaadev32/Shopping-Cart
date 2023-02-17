@@ -12,11 +12,12 @@ import HalfLife from "../media/half-life-2.jpg";
 import Deadspace from "../media/dead-space.jpg";
 import Bannerlord from "../media/bannerlord.jpg";
 
+//ToDo: Let a user navigate between the pages with a navigation bar, which will be shown on both routes.
+//ToDo: Display an input field on it, which lets a user manually type in how many items they want to buy. Also, add an increment and decrement button next to it for fine-tuning. You can also display a title for each product as well as an “Add To Cart” button.
 
 const ShoppingCart = () => {
     const [cartItems, setCartItems] = useState([]);
     const addToCart = (e) => {
-        //const [cartNode, setCartNode] = useState()
 
         console.log(e.target.parentNode.children);
         let addedItem = {
@@ -34,7 +35,6 @@ const ShoppingCart = () => {
     }
 
     const removeItem = (e) => {
-        //ToDo: find the key index of the associated element calling this function and remove it from the ordered list then rerender the list 
         let listItemIndex = e.target.parentNode.parentNode.id;
         let updatedCartItems = [...cartItems];
         updatedCartItems.splice(listItemIndex, 1)
@@ -42,12 +42,16 @@ const ShoppingCart = () => {
         console.log(cartItems);
     }
 
+    const checkout = () => {
+        let emptyCart = [];
+        setCartItems(emptyCart)
+    }
+
     const Cart = () => {
         let totalPrice = 0;
         let taxPrice = 0;
 
         cartItems.forEach(element => {
-            //add a data-key to shopping items that has an integer value to make calculating the price easier then update this code to add and assign the value here
             totalPrice += element.price;
             taxPrice = totalPrice * .1 + totalPrice;
         });
@@ -71,24 +75,19 @@ const ShoppingCart = () => {
                 <div id="pricing-checkout">
                     <div className="cart-items-price">Total Price: ${totalPrice.toFixed(2)} </div>
                     <div className="cart-items-price">Estimate With Tax: ${taxPrice.toFixed(2)}</div>
-                    <button className="shop-button">Checkout</button>
+                    <button className="shop-button" onClick={checkout}>Checkout</button>
                 </div>
             </div>
         );
     }
 
-    useEffect(
-        () => {
-            return () => {
-                console.log(cartItems)
-            };
-        },
-        [cartItems],
-    );
-
     return (
         <div id="shopping-cart">
-
+            <nav>
+                <ol id="shop-nav-list">
+                    <li className="nav-list-item"><a href="/"><h1>Home</h1></a></li>
+                </ol>
+            </nav>
             <Cart />
             <div id="shop">
                 <ol id="shop-items-list">

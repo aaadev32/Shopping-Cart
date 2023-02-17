@@ -23,8 +23,19 @@ a {
   text-decoration: inherit;
 }
 
+h1,
+h2,
+h3,
 h4 {
   margin: 0;
+}
+
+nav {
+  align-self: center;
+}
+
+.nav-list-item {
+  margin: 0 20px;
 }
 
 .App {
@@ -36,6 +47,7 @@ h4 {
 .home-body-images {
   width: 350px;
   height: 220px;
+  transition-duration: 350ms;
 }
 
 .home-body-images:hover {
@@ -47,7 +59,6 @@ h4 {
 #home-page {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   flex: 1 1 auto;
   background: linear-gradient(0.25turn, #3E5C76, #0D1321, #3E5C76);
 }
@@ -58,17 +69,28 @@ h4 {
   justify-content: center;
   text-align: center;
   height: 20%;
-  margin: 30px;
   color: #F0EBD8;
 }
 
 #home-title {
   display: flex;
   justify-content: center;
+  align-items: center;
   font-size: x-large;
 }
 
-#header-quotes {
+#home-nav-container {
+  position: absolute;
+  width: 100%;
+} 
+
+#home-nav-list {
+  display: flex;
+  justify-content: flex-end;
+  text-shadow: 1px 1px 2px #0D1321, 0  0 1em #0D1321, 0 0 0.2em #0D1321;
+}
+
+#quotes {
   display: flex;
   justify-content: space-between;
   margin: 0 50px;
@@ -90,10 +112,6 @@ h4 {
   margin: 50px 0;
 }
 
-#home-sale-event {
-  opacity: .6;
-}
-
 #home-event-items :hover {
   display: flex;
   position: relative;
@@ -103,7 +121,7 @@ h4 {
 #home-bundle-items {
   display: flex;
   justify-content: space-evenly;
-  
+
 }
 
 #home-bundle-items :hover {
@@ -128,6 +146,15 @@ h4 {
   justify-content: center;
 }
 
+#shop-nav-list {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  width: 80%;
+  color: #F0EBD8;
+  text-shadow: 1px 1px 2px #3E5C76, 0 0 1em #3E5C76, 0 0 0.2em #3E5C76;
+}
+
 #cart {
   display: flex;
   justify-content: center;
@@ -140,12 +167,19 @@ h4 {
   align-items: center;
 }
 
+.cart-items:hover {
+  box-shadow: 2px 2px 7px #F0EBD8, -2px -2px 7px #F0EBD8;
+  position: relative;
+}
+
 #cart-items-list {
   display: flex;
   flex-direction: column;
   width: 60%;
-  overflow: auto;
   height: 150px;
+  padding: 14px;
+  overflow: auto;
+
   color: #F0EBD8;
 }
 
@@ -163,7 +197,6 @@ h4 {
   flex-direction: column;
   justify-content: space-around;
   width: 20%;
-  margin: 0px 20px;
 }
 
 
