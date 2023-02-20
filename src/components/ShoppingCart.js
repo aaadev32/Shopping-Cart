@@ -12,17 +12,18 @@ import HalfLife from "../media/half-life-2.jpg";
 import Deadspace from "../media/dead-space.jpg";
 import Bannerlord from "../media/bannerlord.jpg";
 
-//ToDo: Let a user navigate between the pages with a navigation bar, which will be shown on both routes.
-//ToDo: Display an input field on it, which lets a user manually type in how many items they want to buy. Also, add an increment and decrement button next to it for fine-tuning. You can also display a title for each product as well as an “Add To Cart” button.
+//ToDo: Display an input field on cart items which lets a user manually type in how many items they want to buy. Also, add an increment and decrement button next to it for fine-tuning.
 
 const ShoppingCart = () => {
     const [cartItems, setCartItems] = useState([]);
+    const [cartItemPrices, setCartItemPrices] = useState([])
     const addToCart = (e) => {
 
         console.log(e.target.parentNode.children);
         let addedItem = {
             image: e.target.parentNode.children[0].src,
-            price: parseFloat(e.target.parentNode.children[2].dataset.price)
+            price: parseFloat(e.target.parentNode.children[2].dataset.price),
+            priceMultiplier: 0
         };
 
         let newCartItems = [...cartItems];
@@ -47,6 +48,14 @@ const ShoppingCart = () => {
         setCartItems(emptyCart)
     }
 
+    const incrementMultiplier = (e) => {
+        console.log(e.target)
+        let pricingNode = e.target.parentElement;
+        let pricingAdjustmentsNode = pricingNode.parentElement;
+        //console.log(pricingAdjustmentsNode)
+        //setCartItems()
+    }
+
     const Cart = () => {
         let totalPrice = 0;
         let taxPrice = 0;
@@ -57,10 +66,13 @@ const ShoppingCart = () => {
         });
         const itemList = cartItems.map((items, index) => {
             console.log(`list items ${index}`)
-            return <li key={index} className="cart-items" id={index}>
-                <img src={items.image} className="cart-items-images"></img>
-                <div>
-                    <h4>${items.price}</h4>
+            return <li key={index} className="cart-item" id={index}>
+                <img src={items.image} className="cart-item-images"></img>
+                <div className="cart-item-adjustments-container">
+                    <div id="cart-item-price-container">
+                        <h4 className="cart-item-price">${items.price} </h4>
+                        <input className="cart-item-input" type="number" onChange={incrementMultiplier}></input>
+                    </div>
                     <button className="shop-button" onClick={removeItem}>Remove Item</button>
                 </div>
             </li>
@@ -69,12 +81,12 @@ const ShoppingCart = () => {
 
         return (
             <div id="cart">
-                <ol id="cart-items-list">
+                <ol id="cart-item-list">
                     {itemList[0] == null ? 'Your Cart Is Empty.' : itemList}
                 </ol>
                 <div id="pricing-checkout">
-                    <div className="cart-items-price">Total Price: ${totalPrice.toFixed(2)} </div>
-                    <div className="cart-items-price">Estimate With Tax: ${taxPrice.toFixed(2)}</div>
+                    <div className="cart-item-price">Total Price: ${totalPrice.toFixed(2)} </div>
+                    <div className="cart-item-price">Estimate With Tax: ${taxPrice.toFixed(2)}</div>
                     <button className="shop-button" onClick={checkout}>Checkout</button>
                 </div>
             </div>
@@ -165,8 +177,6 @@ const ShoppingCart = () => {
                     </li>
                 </ol>
             </div>
-
-            <div id="code-test"></div>
 
         </div>
     );

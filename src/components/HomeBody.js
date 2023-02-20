@@ -9,7 +9,7 @@ const HomeBody = () => {
     return (
         <div id="home-body">
             <div>
-                <h3 id="home-sale-event">Celebrate Gamer Day (yes we made that up) with MASSIVE discounts up to 50% off!</h3>
+                <h3 id="home-event-sale">Celebrate Gamer Day (yes we made that up) with MASSIVE discounts up to 50% off!</h3>
             </div>
             <ol id="home-event-items">
                 <li><a href={'/shop'}><img className="home-body-images" src={OpusMagnum} alt="game"></img></a></li>
@@ -21,10 +21,12 @@ const HomeBody = () => {
                 <li><a href={'/shop'}><img className="home-body-images" src={Stalker} alt="game"></img></a></li>
                 <li><a href={'/shop'}><img className="home-body-images" src={Metro} alt="game"></img></a></li>
             </ol>
-            <div id="quotes">
-                <h3>i like quake not doom - Joe Roegan</h3>
-                <h3>i love sales - Gabe Newell</h3>
-                <h3>factorio should be an illegal schedule 1 drug - Gamestart Customer</h3>
+            <div id="quotes-container">
+                <div id="quotes">
+                    <h3>i like quake not doom - Joe Roegan</h3>
+                    <h3>i love sales - Gabe Newell</h3>
+                    <h3>factorio should be an illegal schedule 1 drug - Gamestart Customer</h3>
+                </div>
             </div>
         </div>
     );
