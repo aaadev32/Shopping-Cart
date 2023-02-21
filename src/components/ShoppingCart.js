@@ -22,8 +22,9 @@ const ShoppingCart = () => {
         console.log(e.target.parentNode.children);
         let addedItem = {
             image: e.target.parentNode.children[0].src,
-            price: parseFloat(e.target.parentNode.children[2].dataset.price),
-            priceMultiplier: 0
+            priceMultiplier: 1,
+            basePrice: parseFloat(e.target.parentNode.children[2].dataset.price),
+            totalPrice: parseFloat(e.target.parentNode.children[2].dataset.price)
         };
 
         let newCartItems = [...cartItems];
@@ -49,29 +50,38 @@ const ShoppingCart = () => {
     }
 
     const incrementMultiplier = (e) => {
-        console.log(e.target)
-        let pricingNode = e.target.parentElement;
-        let pricingAdjustmentsNode = pricingNode.parentElement;
-        //console.log(pricingAdjustmentsNode)
-        //setCartItems()
+        console.log(e.target.id)
+        let cartItemIndex = e.target.id;
+        let newQuantity = e.target.value
+        let updatedCartItem = [...cartItems];
+
+
+        //works but when the DOM rerenders on state update the input disappears
+        updatedCartItem[cartItemIndex].priceMultiplier = newQuantity;
+        updatedCartItem[cartItemIndex].totalPrice = updatedCartItem[cartItemIndex].basePrice * newQuantity;
+        setCartItems(updatedCartItem)
+        console.log(cartItems[0])
+
     }
 
     const Cart = () => {
-        let totalPrice = 0;
-        let taxPrice = 0;
+
+        let pricingCheckoutInfo = {
+            totalPrice: 0,
+            taxPrice: 0
+        }
 
         cartItems.forEach(element => {
-            totalPrice += element.price;
-            taxPrice = totalPrice * .1 + totalPrice;
+            pricingCheckoutInfo.totalPrice += element.totalPrice;
+            pricingCheckoutInfo.taxPrice = element.totalPrice + element.totalPrice * .1;
         });
         const itemList = cartItems.map((items, index) => {
-            console.log(`list items ${index}`)
             return <li key={index} className="cart-item" id={index}>
                 <img src={items.image} className="cart-item-images"></img>
                 <div className="cart-item-adjustments-container">
                     <div id="cart-item-price-container">
-                        <h4 className="cart-item-price">${items.price} </h4>
-                        <input className="cart-item-input" type="number" onChange={incrementMultiplier}></input>
+                        <h4 className="cart-item-price">${items.totalPrice.toFixed(2)} </h4>
+                        <input id={index} className="cart-item-input" type="number" onChange={incrementMultiplier}></input>
                     </div>
                     <button className="shop-button" onClick={removeItem}>Remove Item</button>
                 </div>
@@ -85,8 +95,8 @@ const ShoppingCart = () => {
                     {itemList[0] == null ? 'Your Cart Is Empty.' : itemList}
                 </ol>
                 <div id="pricing-checkout">
-                    <div className="cart-item-price">Total Price: ${totalPrice.toFixed(2)} </div>
-                    <div className="cart-item-price">Estimate With Tax: ${taxPrice.toFixed(2)}</div>
+                    <div className="cart-item-price">Total Price: ${pricingCheckoutInfo.totalPrice.toFixed(2)} </div>
+                    <div className="cart-item-price">Estimate With Tax: ${pricingCheckoutInfo.taxPrice.toFixed(2)}</div>
                     <button className="shop-button" onClick={checkout}>Checkout</button>
                 </div>
             </div>
