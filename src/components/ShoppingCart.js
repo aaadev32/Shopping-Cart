@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import OpusMagnum from "../media/opus-magnum.jpg";
 import QuakeLive from "../media/quake-live.jpg";
 import Titanfall from "../media/titanfall2.jpg";
@@ -12,14 +12,19 @@ import HalfLife from "../media/half-life-2.jpg";
 import Deadspace from "../media/dead-space.jpg";
 import Bannerlord from "../media/bannerlord.jpg";
 
-//ToDo: Display an input field on cart items which lets a user manually type in how many items they want to buy. Also, add an increment and decrement button next to it for fine-tuning.
+//ToDo: make the cartItem list stop rerendering when the quantity of an item is changed
 
 const ShoppingCart = () => {
     const [cartItems, setCartItems] = useState([]);
     const [cartItemPrices, setCartItemPrices] = useState([])
+    const inputElement = useRef(null);
+
+
+
     const addToCart = (e) => {
 
         console.log(e.target.parentNode.children);
+        //the basePrice and totalPrice properties never actually get changed due to needing to use refs to prevent rerenders every time the cart quantity and price chang, however if the scope of this project were to include a Checkout component it would be neccessary to change the states so i have left them.
         let addedItem = {
             image: e.target.parentNode.children[0].src,
             priceMultiplier: 1,
@@ -50,18 +55,18 @@ const ShoppingCart = () => {
     }
 
     const incrementMultiplier = (e) => {
-        console.log(e.target.id)
-        let cartItemIndex = e.target.id;
-        let newQuantity = e.target.value
-        let updatedCartItem = [...cartItems];
+        console.log(e.target);
+        const cartItemIndex = e.target.dataset.key;
+        const newQuantity = e.target.value;
+        const updatedCartItem = [...cartItems];
 
-
-        //works but when the DOM rerenders on state update the input disappears
         updatedCartItem[cartItemIndex].priceMultiplier = newQuantity;
         updatedCartItem[cartItemIndex].totalPrice = updatedCartItem[cartItemIndex].basePrice * newQuantity;
         setCartItems(updatedCartItem)
-        console.log(cartItems[0])
+        //doesnt work to get the input field to focus after rerender
+        e.target.autofocus = true;
 
+        console.log(cartItems[0]);
     }
 
     const Cart = () => {
@@ -70,18 +75,17 @@ const ShoppingCart = () => {
             totalPrice: 0,
             taxPrice: 0
         }
-
         cartItems.forEach(element => {
             pricingCheckoutInfo.totalPrice += element.totalPrice;
             pricingCheckoutInfo.taxPrice = element.totalPrice + element.totalPrice * .1;
         });
         const itemList = cartItems.map((items, index) => {
-            return <li key={index} className="cart-item" id={index}>
+            return <li key={index} className="cart-item">
                 <img src={items.image} className="cart-item-images"></img>
                 <div className="cart-item-adjustments-container">
                     <div id="cart-item-price-container">
                         <h4 className="cart-item-price">${items.totalPrice.toFixed(2)} </h4>
-                        <input id={index} className="cart-item-input" type="number" onChange={incrementMultiplier}></input>
+                        <input value={items.priceMultiplier} data-key={index} className="cart-item-input" type="number" pattern="[0-9]{0,2}" onChange={incrementMultiplier} ></input>
                     </div>
                     <button className="shop-button" onClick={removeItem}>Remove Item</button>
                 </div>
