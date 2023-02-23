@@ -16,11 +16,8 @@ import Bannerlord from "../media/bannerlord.jpg";
 
 const ShoppingCart = () => {
     const [cartItems, setCartItems] = useState([]);
-    const [cartItemPrices, setCartItemPrices] = useState([])
-    const inputElement = useRef(null);
-
-
-
+    let inputElement = useRef(null);
+    let inputElementKey = useRef(0);
     const addToCart = (e) => {
 
         console.log(e.target.parentNode.children);
@@ -29,7 +26,8 @@ const ShoppingCart = () => {
             image: e.target.parentNode.children[0].src,
             priceMultiplier: 1,
             basePrice: parseFloat(e.target.parentNode.children[2].dataset.price),
-            totalPrice: parseFloat(e.target.parentNode.children[2].dataset.price)
+            totalPrice: parseFloat(e.target.parentNode.children[2].dataset.price),
+            inputFocusElement: null
         };
 
         let newCartItems = [...cartItems];
@@ -42,7 +40,8 @@ const ShoppingCart = () => {
     }
 
     const removeItem = (e) => {
-        let listItemIndex = e.target.parentNode.parentNode.id;
+        console.log(e)
+        let listItemIndex = e.target.parentNode.parentNode.dataset.key;
         let updatedCartItems = [...cartItems];
         updatedCartItems.splice(listItemIndex, 1)
         setCartItems(updatedCartItems)
@@ -56,16 +55,22 @@ const ShoppingCart = () => {
 
     const incrementMultiplier = (e) => {
         console.log(e.target);
+        let inputNode = e.target;
         const cartItemIndex = e.target.dataset.key;
         const newQuantity = e.target.value;
         const updatedCartItem = [...cartItems];
-
+        //setup for focusing the used input after render
+        updatedCartItem[cartItemIndex].inputFocusElement = inputNode;
+        //setup for new state
         updatedCartItem[cartItemIndex].priceMultiplier = newQuantity;
         updatedCartItem[cartItemIndex].totalPrice = updatedCartItem[cartItemIndex].basePrice * newQuantity;
-        setCartItems(updatedCartItem)
-        //doesnt work to get the input field to focus after rerender
-        e.target.autofocus = true;
+        setCartItems(updatedCartItem);
 
+        //set input ref
+        inputElement.current = inputNode;
+        inputElementKey.current = cartItemIndex
+
+        console.log(inputElement)
         console.log(cartItems[0]);
     }
 
@@ -80,12 +85,12 @@ const ShoppingCart = () => {
             pricingCheckoutInfo.taxPrice = element.totalPrice + element.totalPrice * .1;
         });
         const itemList = cartItems.map((items, index) => {
-            return <li key={index} className="cart-item">
+            return <li key={index} className="cart-item" data-key={index}>
                 <img src={items.image} className="cart-item-images"></img>
                 <div className="cart-item-adjustments-container">
                     <div id="cart-item-price-container">
                         <h4 className="cart-item-price">${items.totalPrice.toFixed(2)} </h4>
-                        <input value={items.priceMultiplier} data-key={index} className="cart-item-input" type="number" pattern="[0-9]{0,2}" onChange={incrementMultiplier} ></input>
+                        <input value={items.priceMultiplier} data-key={index} className="cart-item-input" type="number" pattern="[0-9]{0,2}" onChange={incrementMultiplier} ref={inputElement}></input>
                     </div>
                     <button className="shop-button" onClick={removeItem}>Remove Item</button>
                 </div>
@@ -106,6 +111,16 @@ const ShoppingCart = () => {
             </div>
         );
     }
+
+    useEffect(() => {
+        return () => {
+            if (inputElement.current != null) {
+                console.log(inputElement)
+                inputElement.current.focus();
+            }
+        };
+
+    }, [cartItems]);
 
     return (
         <div id="shopping-cart">
