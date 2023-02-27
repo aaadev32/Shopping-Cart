@@ -12,12 +12,14 @@ import HalfLife from "../media/half-life-2.jpg";
 import Deadspace from "../media/dead-space.jpg";
 import Bannerlord from "../media/bannerlord.jpg";
 
-//ToDo: make the cartItem list stop rerendering when the quantity of an item is changed
-
 const ShoppingCart = () => {
     const [cartItems, setCartItems] = useState([]);
-    let inputElement = useRef(null);
-    let inputElementKey = useRef(0);
+
+    //try changing this ref to an array and setting each index dynamically for each cart item you create 
+    let inputElement = useRef([]);
+    let inputIndex = 0;
+
+
     const addToCart = (e) => {
 
         console.log(e.target.parentNode.children);
@@ -36,11 +38,11 @@ const ShoppingCart = () => {
         setCartItems(newCartItems);
         console.log(addedItem);
         console.log(cartItems);
-
     }
 
     const removeItem = (e) => {
         console.log(e)
+
         let listItemIndex = e.target.parentNode.parentNode.dataset.key;
         let updatedCartItems = [...cartItems];
         updatedCartItems.splice(listItemIndex, 1)
@@ -54,27 +56,33 @@ const ShoppingCart = () => {
     }
 
     const incrementMultiplier = (e) => {
-        console.log(e.target);
+        console.log(e.target.value);
         let inputNode = e.target;
         const cartItemIndex = e.target.dataset.key;
         const newQuantity = e.target.value;
         const updatedCartItem = [...cartItems];
-        //setup for focusing the used input after render
-        updatedCartItem[cartItemIndex].inputFocusElement = inputNode;
-        //setup for new state
-        updatedCartItem[cartItemIndex].priceMultiplier = newQuantity;
-        updatedCartItem[cartItemIndex].totalPrice = updatedCartItem[cartItemIndex].basePrice * newQuantity;
-        setCartItems(updatedCartItem);
 
-        //set input ref
-        inputElement.current = inputNode;
-        inputElementKey.current = cartItemIndex
+        //prevents non integer input values
+        if (e.target.value <= 0) {
+            e.preventDefault();
+        } else {
+            //setup for focusing the used input after render
+            updatedCartItem[cartItemIndex].inputFocusElement = inputNode;
+            //setup for new state
+            updatedCartItem[cartItemIndex].priceMultiplier = newQuantity;
+            updatedCartItem[cartItemIndex].totalPrice = updatedCartItem[cartItemIndex].basePrice * newQuantity;
+            setCartItems(updatedCartItem);
 
-        console.log(inputElement)
-        console.log(cartItems[0]);
+            inputIndex = cartItemIndex;
+
+            console.log(inputElement)
+            console.log(cartItems[0]);
+        }
     }
 
     const Cart = () => {
+        //reset the inputElements ref to keep ref array from populating with duplicates from the ref callback
+        inputElement.current = [];
 
         let pricingCheckoutInfo = {
             totalPrice: 0,
@@ -90,7 +98,7 @@ const ShoppingCart = () => {
                 <div className="cart-item-adjustments-container">
                     <div id="cart-item-price-container">
                         <h4 className="cart-item-price">${items.totalPrice.toFixed(2)} </h4>
-                        <input value={items.priceMultiplier} data-key={index} className="cart-item-input" type="number" pattern="[0-9]{0,2}" onChange={incrementMultiplier} ref={inputElement}></input>
+                        <input type="number" min={0} value={items.priceMultiplier} data-key={index} className="cart-item-input" pattern="[0-9]{0,2}" onChange={incrementMultiplier} ref={(ref) => ref != null ? inputElement.current.push(ref) : false}></input>
                     </div>
                     <button className="shop-button" onClick={removeItem}>Remove Item</button>
                 </div>
@@ -114,10 +122,11 @@ const ShoppingCart = () => {
 
     useEffect(() => {
         return () => {
-            if (inputElement.current != null) {
-                console.log(inputElement)
-                inputElement.current.focus();
-            }
+            inputElement.current.map((element, index) => {
+                if (index == inputIndex) {
+                    element.focus();
+                }
+            });
         };
 
     }, [cartItems]);
