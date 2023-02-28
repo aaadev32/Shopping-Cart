@@ -14,30 +14,49 @@ import Bannerlord from "../media/bannerlord.jpg";
 
 const ShoppingCart = () => {
     const [cartItems, setCartItems] = useState([]);
-
-    //try changing this ref to an array and setting each index dynamically for each cart item you create 
+    //an array of refs to all input elements
     let inputElement = useRef([]);
+    //used for focusing the correct input ref in the inputElement array after quantity changes in cart
     let inputIndex = 0;
 
 
     const addToCart = (e) => {
 
-        console.log(e.target.parentNode.children);
-        //the basePrice and totalPrice properties never actually get changed due to needing to use refs to prevent rerenders every time the cart quantity and price chang, however if the scope of this project were to include a Checkout component it would be neccessary to change the states so i have left them.
-        let addedItem = {
-            image: e.target.parentNode.children[0].src,
-            priceMultiplier: 1,
-            basePrice: parseFloat(e.target.parentNode.children[2].dataset.price),
-            totalPrice: parseFloat(e.target.parentNode.children[2].dataset.price),
-            inputFocusElement: null
-        };
+        let cartDuplicateCheck = [...cartItems];
+        let isDuplicate = false;
 
-        let newCartItems = [...cartItems];
-        newCartItems.push(addedItem);
+        // this for loop insures any duplicate items bought using the buy button will instead increment the quanitity of the item already in the cart rather than adding another row of a duplicate items
+        for (let i = 0; i < cartDuplicateCheck.length; i++) {
+            if (cartDuplicateCheck[i].image === e.target.parentNode.children[0].src) {
+                isDuplicate = true;
+                if (cartDuplicateCheck[i].priceMultiplier < 1000) {
+                    cartDuplicateCheck[i].priceMultiplier++
+                    cartDuplicateCheck[i].totalPrice = cartDuplicateCheck[i].basePrice * cartDuplicateCheck[i].priceMultiplier
+                    inputIndex = i;
+                    setCartItems(cartDuplicateCheck);
+                } else if (cartDuplicateCheck[i].priceMultiplier >= 1000 || cartDuplicateCheck[i].priceMultiplier <= 0) {
+                    return null;
+                }
 
-        setCartItems(newCartItems);
-        console.log(addedItem);
-        console.log(cartItems);
+            }
+        }
+        if (isDuplicate == false) {
+            console.log(e.target.parentNode.children);
+            let addedItem = {
+                image: e.target.parentNode.children[0].src,
+                priceMultiplier: 1,
+                basePrice: parseFloat(e.target.parentNode.children[2].dataset.price),
+                totalPrice: parseFloat(e.target.parentNode.children[2].dataset.price),
+                inputFocusElement: null
+            };
+
+            let newCartItems = [...cartItems];
+            newCartItems.push(addedItem);
+
+            setCartItems(newCartItems);
+            inputIndex = cartItems.length;
+            console.log(cartItems);
+        }
     }
 
     const removeItem = (e) => {
@@ -47,7 +66,6 @@ const ShoppingCart = () => {
         let updatedCartItems = [...cartItems];
         updatedCartItems.splice(listItemIndex, 1)
         setCartItems(updatedCartItems)
-        console.log(cartItems);
     }
 
     const checkout = () => {
@@ -56,14 +74,13 @@ const ShoppingCart = () => {
     }
 
     const incrementMultiplier = (e) => {
-        console.log(e.target.value);
         let inputNode = e.target;
         const cartItemIndex = e.target.dataset.key;
         const newQuantity = e.target.value;
         const updatedCartItem = [...cartItems];
 
         //prevents non integer input values
-        if (e.target.value <= 0) {
+        if (e.target.value <= 0 || e.target.value > 999) {
             e.preventDefault();
         } else {
             //setup for focusing the used input after render
@@ -76,7 +93,6 @@ const ShoppingCart = () => {
             inputIndex = cartItemIndex;
 
             console.log(inputElement)
-            console.log(cartItems[0]);
         }
     }
 
@@ -94,11 +110,11 @@ const ShoppingCart = () => {
         });
         const itemList = cartItems.map((items, index) => {
             return <li key={index} className="cart-item" data-key={index}>
-                <img src={items.image} className="cart-item-images"></img>
+                <img alt="game-item" src={items.image} className="cart-item-images"></img>
                 <div className="cart-item-adjustments-container">
                     <div id="cart-item-price-container">
                         <h4 className="cart-item-price">${items.totalPrice.toFixed(2)} </h4>
-                        <input type="number" min={0} value={items.priceMultiplier} data-key={index} className="cart-item-input" pattern="[0-9]{0,2}" onChange={incrementMultiplier} ref={(ref) => ref != null ? inputElement.current.push(ref) : false}></input>
+                        <input type="number" min={0} value={items.priceMultiplier} data-key={index} className="cart-item-input" onChange={incrementMultiplier} ref={(ref) => ref != null ? inputElement.current.push(ref) : false}></input>
                     </div>
                     <button className="shop-button" onClick={removeItem}>Remove Item</button>
                 </div>
@@ -126,6 +142,7 @@ const ShoppingCart = () => {
                 if (index == inputIndex) {
                     element.focus();
                 }
+                return;
             });
         };
 

@@ -53,6 +53,10 @@ nav {
 .home-body-images {
   width: 350px;
   height: 220px;
+  border: 4px solid #0D1321;
+  border-radius: 7px;
+  background-color: #0D1321;
+  box-shadow: 5px 5px 10px 14px #0D1321, -5px -5px 14px #0D1321;
   transition-duration: 350ms;
 }
 
@@ -138,7 +142,7 @@ nav {
 #home-event-items :hover {
   display: flex;
   position: relative;
-  box-shadow: 5px 5px 14px #F0EBD8, -5px -5px 14px #F0EBD8;
+  box-shadow: 5px 5px 20px #F0EBD8, -5px -5px 20px #F0EBD8;
 }
 
 #home-bundle-items {
@@ -150,7 +154,7 @@ nav {
   display: flex;
   justify-content: center;
   position: relative;
-  box-shadow: 5px 5px 14px #F0EBD8, -5px -5px 14px #F0EBD8;
+  box-shadow: 5px 5px 20px #F0EBD8, -5px -5px 20px #F0EBD8;
 }
 
 
