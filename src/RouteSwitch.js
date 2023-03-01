@@ -4,7 +4,7 @@ import Shop from "./pages/Shop";
 
 const RouteSwitch = () => {
     return (
-        <BrowserRouter>
+        <BrowserRouter basename="/Shop">
             <Routes>
                 <Route path="/" element={<App />} />
                 <Route path="/Shop" element={<Shop />} />
