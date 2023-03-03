@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/Shopping-Cart/static/css/main.76dd570b.css",
-    "main.js": "/Shopping-Cart/static/js/main.8059cb93.js",
-    "static/media/factorio.avif": "/Shopping-Cart/static/media/factorio.2f365e38393cc22a260b.avif",
-    "static/media/quake-live.jpg": "/Shopping-Cart/static/media/quake-live.43f9b277734e66608720.jpg",
-    "static/media/stalker-bundle.jpeg": "/Shopping-Cart/static/media/stalker-bundle.8d259c9654c3a850842f.jpeg",
-    "static/media/titanfall2.jpg": "/Shopping-Cart/static/media/titanfall2.e66f6d955109f25c7f28.jpg",
-    "static/media/doom-eternal.jpg": "/Shopping-Cart/static/media/doom-eternal.1bcc80307c6e0939aa70.jpg",
-    "static/media/aoe2.jpg": "/Shopping-Cart/static/media/aoe2.808ce490217aa3b98e83.jpg",
-    "static/media/bannerlord.jpg": "/Shopping-Cart/static/media/bannerlord.33305ab66573e93e2abf.jpg",
-    "static/media/elden-ring.jpg": "/Shopping-Cart/static/media/elden-ring.583517d13df8ee462c20.jpg",
-    "static/media/opus-magnum.jpg": "/Shopping-Cart/static/media/opus-magnum.e8be8f7e18f6b9d22ea0.jpg",
-    "static/media/dead-space.jpg": "/Shopping-Cart/static/media/dead-space.7378546d4509fb830bf8.jpg",
-    "static/media/half-life-2.jpg": "/Shopping-Cart/static/media/half-life-2.8bca87c0555377f491ff.jpg",
-    "static/media/metro-bundle.avif": "/Shopping-Cart/static/media/metro-bundle.8aebcb656ca30c7656aa.avif",
-    "index.html": "/Shopping-Cart/index.html",
-    "main.76dd570b.css.map": "/Shopping-Cart/static/css/main.76dd570b.css.map",
-    "main.8059cb93.js.map": "/Shopping-Cart/static/js/main.8059cb93.js.map"
+    "main.css": "/static/css/main.76dd570b.css",
+    "main.js": "/static/js/main.b8c1a01d.js",
+    "static/media/factorio.avif": "/static/media/factorio.2f365e38393cc22a260b.avif",
+    "static/media/quake-live.jpg": "/static/media/quake-live.43f9b277734e66608720.jpg",
+    "static/media/stalker-bundle.jpeg": "/static/media/stalker-bundle.8d259c9654c3a850842f.jpeg",
+    "static/media/titanfall2.jpg": "/static/media/titanfall2.e66f6d955109f25c7f28.jpg",
+    "static/media/doom-eternal.jpg": "/static/media/doom-eternal.1bcc80307c6e0939aa70.jpg",
+    "static/media/aoe2.jpg": "/static/media/aoe2.808ce490217aa3b98e83.jpg",
+    "static/media/bannerlord.jpg": "/static/media/bannerlord.33305ab66573e93e2abf.jpg",
+    "static/media/elden-ring.jpg": "/static/media/elden-ring.583517d13df8ee462c20.jpg",
+    "static/media/opus-magnum.jpg": "/static/media/opus-magnum.e8be8f7e18f6b9d22ea0.jpg",
+    "static/media/dead-space.jpg": "/static/media/dead-space.7378546d4509fb830bf8.jpg",
+    "static/media/half-life-2.jpg": "/static/media/half-life-2.8bca87c0555377f491ff.jpg",
+    "static/media/metro-bundle.avif": "/static/media/metro-bundle.8aebcb656ca30c7656aa.avif",
+    "index.html": "/index.html",
+    "main.76dd570b.css.map": "/static/css/main.76dd570b.css.map",
+    "main.b8c1a01d.js.map": "/static/js/main.b8c1a01d.js.map"
   },
   "entrypoints": [
     "static/css/main.76dd570b.css",
-    "static/js/main.8059cb93.js"
+    "static/js/main.b8c1a01d.js"
   ]
 }
