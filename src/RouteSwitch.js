@@ -1,11 +1,11 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Router } from "react-router-dom";
 import App from "./App";
 import Shop from "./pages/Shop";
 
 const RouteSwitch = () => {
     return (
-        <BrowserRouter>
-            <Routes basename="/">
+        <BrowserRouter basename="/">
+            <Routes>
                 <Route path="/" element={<App />} />
                 <Route path="/Shop" element={<Shop />} />
             </Routes>
