@@ -245,8 +245,8 @@ nav {
 
 
 .shop-images {
-  height: inherit;
-  width: inherit;
+  max-height: 140px;
+  max-width: 250px;
 }
 
 #shop {
